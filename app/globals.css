@@ -1,0 +1,155 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Updated color palette for energetic sports streaming platform */
+  --background: oklch(1 0 0); /* #ffffff */
+  --foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --card: oklch(0.984 0.008 17.38); /* #fef2f2 */
+  --card-foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --popover: oklch(1 0 0); /* #ffffff */
+  --popover-foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --primary: oklch(0.567 0.217 27.33); /* #dc2626 - energetic red */
+  --primary-foreground: oklch(1 0 0); /* #ffffff */
+  --secondary: oklch(0.744 0.155 70.67); /* #f59e0b - vibrant yellow accent */
+  --secondary-foreground: oklch(1 0 0); /* #ffffff */
+  --muted: oklch(0.478 0.013 253.29); /* #6b7280 */
+  --muted-foreground: oklch(1 0 0); /* #ffffff */
+  --accent: oklch(0.744 0.155 70.67); /* #f59e0b - accent highlights */
+  --accent-foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --destructive: oklch(0.506 0.201 15.74); /* #be123c */
+  --destructive-foreground: oklch(1 0 0); /* #ffffff */
+  --border: oklch(0.922 0.003 106.42); /* #e5e7eb */
+  --input: oklch(0.961 0.002 247.86); /* #f1f5f9 */
+  --ring: oklch(0.567 0.217 27.33 / 0.5); /* rgba(220, 38, 38, 0.5) */
+  --chart-1: oklch(0.567 0.217 27.33); /* #dc2626 */
+  --chart-2: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --chart-3: oklch(0.478 0.013 253.29); /* #6b7280 */
+  --chart-4: oklch(0.172 0.032 254.14); /* #1f2937 */
+  --chart-5: oklch(0.506 0.201 15.74); /* #be123c */
+  --radius: 0.5rem;
+  --sidebar: oklch(0.984 0.008 17.38); /* #fef2f2 */
+  --sidebar-foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --sidebar-primary: oklch(0.567 0.217 27.33); /* #dc2626 */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
+  --sidebar-accent: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --sidebar-accent-foreground: oklch(0.278 0.015 255.85); /* #374151 */
+  --sidebar-border: oklch(0.922 0.003 106.42); /* #e5e7eb */
+  --sidebar-ring: oklch(0.567 0.217 27.33 / 0.5); /* rgba(220, 38, 38, 0.5) */
+}
+
+.dark {
+  /* Dark mode colors for sports streaming platform */
+  --background: oklch(0.11 0.005 285.82); /* #1a1a1a */
+  --foreground: oklch(0.985 0 0); /* #ffffff */
+  --card: oklch(0.15 0.005 285.82); /* #262626 */
+  --card-foreground: oklch(0.985 0 0); /* #ffffff */
+  --popover: oklch(0.11 0.005 285.82); /* #1a1a1a */
+  --popover-foreground: oklch(0.985 0 0); /* #ffffff */
+  --primary: oklch(0.627 0.24 27.33); /* #ef4444 - brighter red for dark mode */
+  --primary-foreground: oklch(1 0 0); /* #ffffff */
+  --secondary: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --secondary-foreground: oklch(0.11 0.005 285.82); /* #1a1a1a */
+  --muted: oklch(0.4 0.013 253.29); /* #525252 */
+  --muted-foreground: oklch(0.708 0.013 253.29); /* #a3a3a3 */
+  --accent: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --accent-foreground: oklch(0.11 0.005 285.82); /* #1a1a1a */
+  --destructive: oklch(0.567 0.217 27.33); /* #dc2626 */
+  --destructive-foreground: oklch(1 0 0); /* #ffffff */
+  --border: oklch(0.269 0.005 285.82); /* #404040 */
+  --input: oklch(0.269 0.005 285.82); /* #404040 */
+  --ring: oklch(0.627 0.24 27.33 / 0.5); /* rgba(239, 68, 68, 0.5) */
+  --chart-1: oklch(0.627 0.24 27.33); /* #ef4444 */
+  --chart-2: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --chart-3: oklch(0.708 0.013 253.29); /* #a3a3a3 */
+  --chart-4: oklch(0.985 0 0); /* #ffffff */
+  --chart-5: oklch(0.567 0.217 27.33); /* #dc2626 */
+  --sidebar: oklch(0.15 0.005 285.82); /* #262626 */
+  --sidebar-foreground: oklch(0.985 0 0); /* #ffffff */
+  --sidebar-primary: oklch(0.627 0.24 27.33); /* #ef4444 */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #ffffff */
+  --sidebar-accent: oklch(0.744 0.155 70.67); /* #f59e0b */
+  --sidebar-accent-foreground: oklch(0.11 0.005 285.82); /* #1a1a1a */
+  --sidebar-border: oklch(0.269 0.005 285.82); /* #404040 */
+  --sidebar-ring: oklch(0.627 0.24 27.33 / 0.5); /* rgba(239, 68, 68, 0.5) */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Added custom sports streaming animations */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 5px rgba(220, 38, 38, 0.5);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(220, 38, 38, 0.8), 0 0 30px rgba(220, 38, 38, 0.4);
+    }
+  }
+
+  .live-indicator {
+    animation: live-pulse 1.5s ease-in-out infinite;
+  }
+
+  @keyframes live-pulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
+  }
+}
