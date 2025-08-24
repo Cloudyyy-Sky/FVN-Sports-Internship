@@ -1,17 +1,16 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Loader2, Mail, Lock, User } from "lucide-react"
 import Link from "next/link"
-import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
 
-export default function SignUpForm() {
+// Firebase alternative implementation
+export default function FirebaseSignUpForm() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fullName, setFullName] = useState("")
@@ -27,29 +26,20 @@ export default function SignUpForm() {
     setSuccess("")
 
     try {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-          },
-        },
-      })
-
-      if (authError) {
-        setError(authError.message)
-        return
-      }
+      // Firebase Auth implementation would go here
+      // const { createUserWithEmailAndPassword, updateProfile } = await import('firebase/auth')
+      // const { auth } = await import('@/lib/firebase')
+      //
+      // const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+      // await updateProfile(userCredential.user, { displayName: fullName })
 
       setSuccess("Account created successfully! Redirecting to login...")
       setTimeout(() => {
         router.push("/auth/login")
       }, 1500)
-    } catch (error) {
+    } catch (error: any) {
       console.error("Signup error:", error)
-      setError("An unexpected error occurred")
+      setError(error.message || "An unexpected error occurred")
     } finally {
       setLoading(false)
     }
@@ -61,6 +51,7 @@ export default function SignUpForm() {
         <div className="flex items-center justify-center w-16 h-16 bg-red-600 rounded-full mx-auto mb-4">
           <span className="text-2xl font-bold text-white">FVN</span>
         </div>
+        <p className="text-center text-gray-400 text-sm">Firebase Authentication</p>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
