@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Loader2, Mail, Lock, User } from "lucide-react"
 import Link from "next/link"
-import { createClient } from "@/lib/supabase/client"
+import { signUp } from "@/lib/firebase/auth"
 import { useRouter } from "next/navigation"
 
 export default function SignUpForm() {
@@ -27,19 +27,10 @@ export default function SignUpForm() {
     setSuccess("")
 
     try {
-      const supabase = createClient()
-      const { error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          data: {
-            full_name: fullName,
-          },
-        },
-      })
+      const { user, error: authError } = await signUp(email, password, fullName)
 
       if (authError) {
-        setError(authError.message)
+        setError(authError)
         return
       }
 

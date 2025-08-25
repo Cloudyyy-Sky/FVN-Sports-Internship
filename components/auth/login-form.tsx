@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Loader2, Mail, Lock } from "lucide-react"
 import Link from "next/link"
-import { supabase } from "@/lib/supabase/client"
+import { signIn } from "@/lib/firebase/auth"
 
 export default function LoginForm() {
   const [email, setEmail] = useState("")
@@ -24,13 +24,10 @@ export default function LoginForm() {
     setError("")
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      const { user, error: authError } = await signIn(email, password)
 
-      if (error) {
-        setError(error.message)
+      if (authError) {
+        setError(authError)
       } else {
         router.push("/")
         router.refresh()

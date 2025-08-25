@@ -12,30 +12,24 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { User, Settings, LogOut, Heart } from "lucide-react"
 import Link from "next/link"
-import { supabase } from "@/lib/supabase/client"
+import { logOut } from "@/lib/firebase/auth"
 import { useRouter } from "next/navigation"
+import type { User as FirebaseUser } from "firebase/auth"
 
 interface UserNavProps {
-  user: {
-    id: string
-    email?: string
-    user_metadata?: {
-      full_name?: string
-      avatar_url?: string
-    }
-  }
+  user: FirebaseUser
 }
 
 export function UserNav({ user }: UserNavProps) {
   const router = useRouter()
 
   const handleSignOut = async () => {
-    await supabase.auth.signOut()
+    await logOut()
     router.push("/")
     router.refresh()
   }
 
-  const displayName = user.user_metadata?.full_name || user.email?.split("@")[0] || "User"
+  const displayName = user.displayName || user.email?.split("@")[0] || "User"
   const initials = displayName
     .split(" ")
     .map((n) => n[0])
@@ -48,7 +42,7 @@ export function UserNav({ user }: UserNavProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="relative h-8 w-8 rounded-full">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={user.user_metadata?.avatar_url || "/placeholder.svg"} alt={displayName} />
+            <AvatarImage src={user.photoURL || "/placeholder.svg"} alt={displayName} />
             <AvatarFallback className="bg-red-600 text-white">{initials}</AvatarFallback>
           </Avatar>
         </Button>
